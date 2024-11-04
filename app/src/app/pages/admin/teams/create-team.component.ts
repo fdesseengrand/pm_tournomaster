@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+/**
+ * The teams management page.
+ */
 @Component({
   selector: 'app-create-team',
   standalone: true,

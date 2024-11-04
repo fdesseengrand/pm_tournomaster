@@ -16,7 +16,6 @@ export class AuthController {
     /**
      * Log the user in.
      * @param signInDto 
-     * @returns 
      */
     @HttpCode(HttpStatus.OK)
     @Post('login')

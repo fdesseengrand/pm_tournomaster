@@ -1,16 +1,18 @@
-import { CommonModule } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../shared/auth/auth.service';
+import { AuthService } from '../../shared/auth/auth.service';
+import { ButtonComponent } from "../../shared/components/button/button.component";
+import { APP_ROUTES } from '../../shared/constants/routes.constants';
 
 /**
- * The login component.
+ * The login page.
  */
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [NgClass, ReactiveFormsModule, ButtonComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -44,11 +46,22 @@ export class LoginComponent {
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { name, password } = this.loginForm.value;
+
       name && password && this.authService.login({ name, password })
         .subscribe({
-          next: () => this.router.navigate(['/']),
+          next: () => this.router.navigate(['admin']),
           error: (err) => this.errorMessage = 'Invalid username or password'
         });
+    } else {
+      // Sets all controls as touched to trigger potential error display.
+      this.loginForm.markAllAsTouched();
     }
+  }
+
+  /**
+   * Handles login cancellation.
+   */
+  onCancel(): void {
+    this.router.navigate([APP_ROUTES.consultation]);
   }
 }

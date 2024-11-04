@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt.auth.guard';
 import { CreateTeamDto } from './dto/create-team.dto';
 import { TeamsService } from './teams.service';
 
@@ -16,14 +17,17 @@ export class TeamsController {
   /**
    * Creates a new team.
    * @param createTeamDto The team to create.
+   * @returns The created team.
    */
   @Post()
+  @UseGuards(JwtAuthGuard)
   create(@Body() createTeamDto: CreateTeamDto) {
     return this.teamsService.create(createTeamDto);
   }
 
   /**
    * Gets all teams.
+   * @returns The teams.
    */
   @Get()
   findAll() {

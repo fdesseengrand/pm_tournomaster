@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+/**
+ * The scores consultation page.
+ */
 @Component({
   selector: 'app-scores',
   standalone: true,

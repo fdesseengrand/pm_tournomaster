@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 
+/**
+ * The results page.
+ */
 @Component({
   selector: 'app-set-results',
   standalone: true,

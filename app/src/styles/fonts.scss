@@ -1,0 +1,44 @@
+:root {
+  /* Font family */
+  font-family: "Poppins", sans-serif;
+}
+
+/* Responsive text styles */
+.title {
+  font-size: var(--font-title-mobile);
+  font-weight: var(--font-weight-semibold);
+}
+
+.subtitle {
+  font-size: var(--font-subtitle-mobile);
+  font-weight: var(--font-weight-semibold);
+}
+
+.bold-text {
+  font-size: var(--font-text-mobile);
+  font-weight: var(--font-weight-semibold);
+}
+
+.light-text {
+  font-size: var(--font-text-mobile);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Media queries for desktop font sizes */
+@media screen and (width > 768px) {
+  .title {
+    font-size: var(--font-title-desktop);
+  }
+
+  .subtitle {
+    font-size: var(--font-subtitle-desktop);
+  }
+
+  .bold-text {
+    font-size: var(--font-text-desktop);
+  }
+
+  .light-text {
+    font-size: var(--font-text-desktop);
+  }
+}

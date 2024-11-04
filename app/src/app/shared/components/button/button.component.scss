@@ -1,0 +1,36 @@
+.btn {
+  padding: 0.5rem 1rem;
+  margin: 0.2rem;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  text-align: center;
+  text-transform: uppercase;
+
+  // Primary button styles
+  &.primary {
+    background-color: var(--light);
+    color: var(--white);
+
+    &:hover {
+      background-color: var(--very-light);
+    }
+  }
+
+  // Secondary button styles
+  &.secondary {
+    background-color: var(--white);
+    color: var(--light);
+
+    &:hover {
+      background-color: var(--very-light);
+      color: var(--white);
+    }
+  }
+
+  // Accessibility
+  &:focus-visible {
+    outline: 3px solid var(--light);
+    outline-offset: 2px;
+  }
+}

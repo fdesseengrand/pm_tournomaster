@@ -1,0 +1,25 @@
+:root {
+  /* Colors */
+  --very-dark: #00171f;
+  --dark: #003459;
+  --light: #007ea7;
+  --very-light: #00a8e8;
+  --white: #ffffff;
+  --red: #ff7672;
+  --very-dark-60: rgba(0, 23, 31, 0.6);
+  --very-dark-80: rgba(0, 23, 31, 0.8);
+
+  /* Font sizes and weights */
+  --font-title-mobile: 15px;
+  --font-title-desktop: 24px;
+  --font-subtitle-mobile: 15px;
+  --font-subtitle-desktop: 20px;
+  --font-text-mobile: 12px;
+  --font-text-desktop: 16px;
+
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Screen size for media query */
+  --desktop-breakpoint: 768px;
+}
