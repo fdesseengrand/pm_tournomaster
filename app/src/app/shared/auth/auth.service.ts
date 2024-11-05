@@ -2,7 +2,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { Observable, of, throwError } from "rxjs";
+import { BehaviorSubject, Observable, of, throwError } from "rxjs";
 import { catchError, map, tap } from "rxjs/operators";
 import { APP_ROUTES } from "../constants/routes.constants";
 import { Credentials, Tokens } from "./auth.interface";
@@ -25,6 +25,11 @@ export class AuthService {
   readonly REFRESH_TOKEN_STORAGE_KEY = "refresh_token";
 
   /**
+   * Subject to notify the user's authentication status.
+   */
+  isAuthenticated$ = new BehaviorSubject<boolean>(false);
+
+  /**
    * Constructor.
    * @param http The Http client.
    * @param router The router service.
@@ -39,6 +44,7 @@ export class AuthService {
     return this.http.post<Tokens>("auth/login", credentials).pipe(
       tap((tokens) => {
         this.storeTokens(tokens);
+        this.isAuthenticated$.next(true);
         this.router.navigate([APP_ROUTES.consultation]);
       })
     );
@@ -50,6 +56,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem(this.ACCESS_TOKEN_STORAGE_KEY);
     localStorage.removeItem(this.REFRESH_TOKEN_STORAGE_KEY);
+    tap(() => this.isAuthenticated$.next(false));
 
     this.router.navigate([APP_ROUTES.login]);
   }
@@ -100,13 +107,13 @@ export class AuthService {
   /**
    * Checks if the token exists and is valid.
    */
-  isAuthenticated(origine?: string): Observable<boolean> {
-    origine && console.log("isAuthenticated", origine);
+  checkAuth(): Observable<boolean> {
     const token = this.accessToken;
     if (token && !this.isTokenExpired(token)) {
       return of(true);
     } else if (token && this.refreshToken) {
       return this.refreshAccessToken().pipe(
+        tap(() => this.isAuthenticated$.next(true)),
         map(() => true),
         catchError(() => {
           this.logout();

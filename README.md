@@ -53,9 +53,9 @@ docker-compose up --build
 
 #### Prerequisites
 
-- The NestJS application requires Node.js >= 16.
-- The Angular application requires Node.js in version	`^18.19.1 || ^20.11.1 || ^22.0.0`.
-- Make sure you have npm installed in a recent version.
+-   The NestJS application requires Node.js >= 16.
+-   The Angular application requires Node.js in version `^18.19.1 || ^20.11.1 || ^22.0.0`.
+-   Make sure you have npm installed in a recent version.
 
 #### API Services
 
@@ -72,6 +72,8 @@ npm run start
 ```
 
 Refer to the `scripts` section of the `api/package.json` file for alternative startups (watch mode, debug, tests).
+
+The service will be available at `localhost:3000`, e.g. `localhost:3000/matches` to fetch matches or `localhost:3000/docs` to consult the Swagger.
 
 #### Front application
 

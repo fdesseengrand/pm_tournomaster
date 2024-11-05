@@ -46,8 +46,10 @@ export class LoginComponent {
       name &&
         password &&
         this.authService.login({ name, password }).subscribe({
-          next: () => this.router.navigate(["admin"]),
-          error: (err) => (this.errorMessage = "Invalid username or password"),
+          next: () => {
+            this.router.navigate([""]);
+          },
+          error: (_) => (this.errorMessage = "Invalid username or password"),
         });
     } else {
       // Sets all controls as touched to trigger potential error display.

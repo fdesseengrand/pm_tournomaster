@@ -29,7 +29,7 @@ export const authInterceptor: HttpInterceptorFn = (
 
   return next(authReq).pipe(
     catchError((error) => {
-      if (error.status === 401 && !authReq.url.includes("auth/refresh")) {
+      if (error.status === 401 && !authReq.url.includes("auth/")) {
         // If the user is logged out, try to refresh the access token.
         return authService.refreshAccessToken().pipe(
           switchMap((tokens: Tokens) => {

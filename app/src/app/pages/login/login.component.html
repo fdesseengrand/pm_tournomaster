@@ -1,5 +1,5 @@
 <div class="login-container">
-  <img ngSrc="/icons/authent-with-circle.svg" alt="Authentication logo" width="72" height="72" />
+  <img ngSrc="/icons/authent-with-circle.svg" alt="Authentication logo" width="72" height="72" priority />
 
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     @let nameControl = loginForm.controls.name; @let passwordControl = loginForm.controls.password; @if (errorMessage) {

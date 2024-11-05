@@ -1,5 +1,13 @@
-import { Component } from "@angular/core";
+import { Component, signal } from "@angular/core";
 import { ButtonComponent } from "../../shared/components/button/button.component";
+
+type TimeFilterValue = "all" | "completed" | "upcoming";
+
+interface TimeFilterOption {
+  label: string;
+  value: TimeFilterValue;
+  ariaLabel: string;
+}
 
 /**
  * The Scores consultation Component.
@@ -13,9 +21,28 @@ import { ButtonComponent } from "../../shared/components/button/button.component
 })
 export class ConsultationComponent {
   /**
+   * Selected time filter.
+   */
+  selectedFilter = signal<TimeFilterValue>("all");
+
+  /**
+   * Time filter options.
+   */
+  timeFilterOptions: TimeFilterOption[] = [
+    { label: "ALL", value: "all", ariaLabel: "All" },
+    { label: "COMPLETED", value: "completed", ariaLabel: "Completed" },
+    { label: "UPCOMING", value: "upcoming", ariaLabel: "Upcoming" },
+  ];
+
+  /**
    * Handles the click event on a time filter button.
    */
-  onTimeFilterClick() {
-    throw new Error("Method not implemented.");
+  onTimeFilterClick(filter: TimeFilterValue) {
+    this.selectedFilter.set(filter);
   }
+
+  /**
+   * Determines if the given filter is selected.
+   */
+  isSelected = (filter: TimeFilterValue) => this.selectedFilter() === filter;
 }

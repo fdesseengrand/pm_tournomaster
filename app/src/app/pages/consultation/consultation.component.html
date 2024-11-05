@@ -1,14 +1,18 @@
 <section aria-labelledby="explanation-banner">
-  <div class="explanation-banner subtitle">
-    Retrouvez les résultats de vos matchs préférés dans ce tournois de folie !
-  </div>
+  <div class="explanation-banner subtitle">Find out the results of your favorite matches in this crazy tournament!</div>
 </section>
 
 <section aria-labelledby="match-list" class="match-container">
   <div class="time-filter">
-    <app-button mode="secondary" (clicked)="onTimeFilterClick()" aria-label="All">ALL</app-button>
-    <app-button type="submit" (clicked)="onTimeFilterClick()" aria-label="Completed">COMPLETED</app-button>
-    <app-button type="submit" (clicked)="onTimeFilterClick()" aria-label="Upcoming">UPCOMING</app-button>
+    @for (filter of timeFilterOptions; track filter.value) {
+    <app-button
+      [mode]="isSelected(filter.value) ? 'primary' : 'secondary'"
+      (clicked)="onTimeFilterClick(filter.value)"
+      [attr.aria-label]="filter.ariaLabel"
+    >
+      {{ filter.label }}
+    </app-button>
+    }
   </div>
 
   <div class="match-list">

@@ -4,7 +4,7 @@
     <h1 class="title">Tournomaster</h1>
   </div>
 
-  @if(!(authService.isAuthenticated("header") | async)) {
+  @if(!(authService.isAuthenticated$ | async)) {
   <div class="login">
     <a href="/login">
       <img src="/icons/locker.svg" alt="Password icon" class="login-icon" />
