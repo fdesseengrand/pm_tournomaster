@@ -1,3 +1,24 @@
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--very-dark);
+  padding: 3rem 4rem 6rem;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.2rem;
+  margin-top: 1.2rem;
+}
+
+// Input styles
 .input-container {
   position: relative;
 

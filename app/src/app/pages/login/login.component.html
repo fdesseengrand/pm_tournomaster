@@ -1,9 +1,8 @@
 <div class="login-container">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    @let nameControl = loginForm.controls.name; @let passwordControl = loginForm.controls.password;
+  <img ngSrc="/icons/authent-with-circle.svg" alt="Authentication logo" width="72" height="72" />
 
-    <h2>Login</h2>
-    @if (errorMessage) {
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    @let nameControl = loginForm.controls.name; @let passwordControl = loginForm.controls.password; @if (errorMessage) {
     <div class="error-message">{{ errorMessage }}</div>
     }
     <div class="input-container">
@@ -42,11 +41,13 @@
         aria-live="assertive"
       />
       @if (passwordControl.invalid && (passwordControl.touched || passwordControl.dirty)) {
-      <p id="passwordError" class="error-message light-text">Password is required.</p>
+      <p id="passwordError" class="error-message light-text" role="alert">Password is required.</p>
       }
     </div>
 
-    <app-button mode="secondary" (clicked)="onCancel()">Cancel</app-button>
-    <app-button type="submit" (clicked)="onSubmit()">Login</app-button>
+    <div class="button-container">
+      <app-button mode="secondary" (clicked)="onCancel()" aria-label="Cancel">Cancel</app-button>
+      <app-button type="submit" (clicked)="onSubmit()" aria-label="Login">Login</app-button>
+    </div>
   </form>
 </div>

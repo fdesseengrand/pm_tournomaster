@@ -1,27 +1,27 @@
-import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../../shared/auth/auth.service';
+import { NgClass, NgOptimizedImage } from "@angular/common";
+import { Component } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { AuthService } from "../../shared/auth/auth.service";
 import { ButtonComponent } from "../../shared/components/button/button.component";
-import { APP_ROUTES } from '../../shared/constants/routes.constants';
+import { APP_ROUTES } from "../../shared/constants/routes.constants";
 
 /**
  * The login page.
  */
 @Component({
-  selector: 'app-login',
+  selector: "app-login",
   standalone: true,
-  imports: [NgClass, ReactiveFormsModule, ButtonComponent],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  imports: [ButtonComponent, NgClass, NgOptimizedImage, ReactiveFormsModule],
+  templateUrl: "./login.component.html",
+  styleUrl: "./login.component.scss",
 })
 export class LoginComponent {
   loginForm: FormGroup<{
     name: FormControl<string | null>;
     password: FormControl<string | null>;
   }>;
-  errorMessage: string = '';
+  errorMessage: string = "";
 
   /**
    * Constructor.
@@ -29,14 +29,10 @@ export class LoginComponent {
    * @param authService The authentication service.
    * @param router The router service.
    */
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
-      name: ['', Validators.required],
-      password: ['', Validators.required]
+      name: ["", Validators.required],
+      password: ["", Validators.required],
     });
   }
 
@@ -47,10 +43,11 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const { name, password } = this.loginForm.value;
 
-      name && password && this.authService.login({ name, password })
-        .subscribe({
-          next: () => this.router.navigate(['admin']),
-          error: (err) => this.errorMessage = 'Invalid username or password'
+      name &&
+        password &&
+        this.authService.login({ name, password }).subscribe({
+          next: () => this.router.navigate(["admin"]),
+          error: (err) => (this.errorMessage = "Invalid username or password"),
         });
     } else {
       // Sets all controls as touched to trigger potential error display.

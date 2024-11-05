@@ -1,4 +1,54 @@
-<p>consultation works!</p>
-<app-button>Tout</app-button>
-<app-button mode="secondary">Terminés</app-button>
-<app-button>Prévus</app-button>
+<section aria-labelledby="explanation-banner">
+  <div class="explanation-banner subtitle">
+    Retrouvez les résultats de vos matchs préférés dans ce tournois de folie !
+  </div>
+</section>
+
+<section aria-labelledby="match-list" class="match-container">
+  <div class="time-filter">
+    <app-button mode="secondary" (clicked)="onTimeFilterClick()" aria-label="All">ALL</app-button>
+    <app-button type="submit" (clicked)="onTimeFilterClick()" aria-label="Completed">COMPLETED</app-button>
+    <app-button type="submit" (clicked)="onTimeFilterClick()" aria-label="Upcoming">UPCOMING</app-button>
+  </div>
+
+  <div class="match-list">
+    <div class="list-element">
+      <span class="match-status light-text">20:30</span>
+      <div class="score-container bold-text">
+        <div class="team-container first-team">
+          <span class="team-name">Baltimore</span>
+        </div>
+        <span class="separator">-</span>
+        <div class="team-container second-team">
+          <span class="team-name">Toronto</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-element in-progress">
+      <span class="match-status light-text">30'</span>
+      <div class="score-container bold-text">
+        <div class="team-container first-team">
+          <span class="team-name">Tempa Bay</span>
+        </div>
+        <span class="separator">-</span>
+        <div class="team-container second-team">
+          <span class="team-name">Yankees N.Y.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-element finished">
+      <span class="match-status light-text">TERMINÉ</span>
+      <div class="score-container bold-text">
+        <div class="team-container first-team">
+          <span class="team-name">Boston</span>
+        </div>
+        <span class="separator">6 - 7</span>
+        <div class="team-container second-team">
+          <span class="team-name">Toronto</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

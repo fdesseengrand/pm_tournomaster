@@ -1,31 +1,59 @@
 header {
-  background-color: #333;
-  color: #fff;
+  background-color: var(--very-dark);
   padding: 1em;
-}
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2.75rem;
 
-.navbar {
-  h1 {
-    display: inline;
-    margin-right: 1em;
+  .site-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    img {
+      width: 38px;
+      height: 38px;
+    }
+
+    @media (min-width: 768px) {
+      img {
+        width: 60px;
+        height: 60px;
+      }
+
+      h1 {
+        font-size: var(--font-title-desktop);
+      }
+    }
   }
 
-  ul {
-    display: inline;
-    list-style-type: none;
+  .login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img.login-icon {
+      width: 29px;
+      height: 29px;
+    }
+
+    .login-text {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      img.login-icon {
+        width: 34px;
+        height: 34px;
+      }
+
+      .login-text {
+        display: inline;
+      }
+    }
   }
 
-  li {
-    display: inline;
-    margin-right: 1em;
-  }
-
-  a {
-    color: #fff;
-    text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
+  @media (min-width: 768px) {
+    height: 3.125rem;
   }
 }

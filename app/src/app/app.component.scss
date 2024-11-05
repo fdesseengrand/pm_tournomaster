@@ -1,7 +1,6 @@
 main {
   display: flex;
   justify-content: center;
-  padding: 1rem;
   box-sizing: border-box;
   min-height: 100vh;
 
@@ -12,14 +11,17 @@ main {
     width: 100%;
     // Centers the content
     margin: 0 auto;
-    padding: 1rem;
+    padding: 0;
   }
 }
 
 /* Responsive adjustments */
 @media (min-width: 768px) {
-  main .content-wrapper {
-    padding: 2rem;
+  main {
+    padding: 1rem;
+    .content-wrapper {
+      padding: 2rem;
+    }
   }
 }
 

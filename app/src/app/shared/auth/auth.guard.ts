@@ -1,7 +1,7 @@
-import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
-import { APP_ROUTES } from '../constants/routes.constants';
-import { AuthService } from './auth.service';
+import { inject } from "@angular/core";
+import { CanActivateFn, Router } from "@angular/router";
+import { APP_ROUTES } from "../constants/routes.constants";
+import { AuthService } from "./auth.service";
 
 /**
  * Authentication guard.

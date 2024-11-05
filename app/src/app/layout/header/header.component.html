@@ -1,10 +1,15 @@
 <header>
-  <nav class="navbar">
-    <h1>My App</h1>
-    <ul>
-      <li><a routerLink="/">Home</a></li>
-      <li><a routerLink="/admin/teams">Teams</a></li>
-      <li><a routerLink="/admin/results">Results</a></li>
-    </ul>
-  </nav>
+  <div class="site-title title">
+    <img src="/icons/logo.png" alt="Logo" class="logo-icon" />
+    <h1 class="title">Tournomaster</h1>
+  </div>
+
+  @if(!(authService.isAuthenticated("header") | async)) {
+  <div class="login">
+    <a href="/login">
+      <img src="/icons/locker.svg" alt="Password icon" class="login-icon" />
+    </a>
+    <span class="login-text">Log in</span>
+  </div>
+  }
 </header>
