@@ -2,11 +2,9 @@
   <div class="page-subtitle subtitle">Here you can enter the scores for each match.</div>
 </section>
 
-<!-- Check that matchesForm has the same number of formgroups than the number of matches -->
 <form [formGroup]="matchesForm" (ngSubmit)="onSubmit()">
   <div>
-    <button class="btn bold-text secondary" (click)="onCancel()">cancel</button>
-    <button class="btn bold-text primary" type="submit">save</button>
+    <app-button mode="primary" type="submit" [isDisabled]="matchesForm.invalid || matchesForm.pristine">Save changes</app-button>
   </div>
 
   <div class="match-list">

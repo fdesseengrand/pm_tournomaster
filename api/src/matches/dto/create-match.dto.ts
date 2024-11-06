@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsDate, IsNotEmpty } from 'class-validator';
+import { IsDate, IsNotEmpty, Matches } from 'class-validator';
 import { TeamScoreDto } from './team-score.dto';
 
 /**
@@ -28,4 +28,10 @@ export class CreateMatchDto {
     @IsDate()
     @Type(() => Date)
     dateTime: Date;
+
+    /**
+     * The score achieved by the team.
+     */
+    @Matches(/^\d+-\d+$/)
+    score: string;
 }

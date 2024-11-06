@@ -5,7 +5,6 @@ import { Team } from '../teams/entities/team.entity';
 import { CreateMatchDto } from './dto/create-match.dto';
 import { UpdateMatchDto } from './dto/update-match.dto';
 import { Match } from './entities/match.entity';
-import { buildScore } from './matches.utils';
 
 /**
  * The matches service.
@@ -48,7 +47,7 @@ export class MatchesService {
             firstTeam: firstTeamEntity,
             secondTeam: secondTeamEntity,
             dateTime,
-            score: buildScore(firstTeam, secondTeam),
+            score: createMatchDto.score,
         });
 
         return this.matchRepository.save(match);
@@ -101,7 +100,7 @@ export class MatchesService {
 
             match.firstTeam = firstTeamEntity;
             match.secondTeam = secondTeamEntity;
-            match.score = buildScore(firstTeam, secondTeam);
+            match.score = updateMatchDto.score;
         }
 
         if (updateMatchDto.dateTime) {

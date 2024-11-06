@@ -3,6 +3,7 @@ import { Component, signal } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { forkJoin, Observable, of } from "rxjs";
 import { MatchService } from "../../../services/match.service";
+import { ButtonComponent } from "../../../shared/components/button/button.component";
 import { Match } from "../../../shared/models/match.model";
 import { MatchUpdateComponent } from "./match-update/match-update.component";
 
@@ -12,7 +13,7 @@ import { MatchUpdateComponent } from "./match-update/match-update.component";
 @Component({
   selector: "app-match-admin",
   standalone: true,
-  imports: [AsyncPipe, MatchUpdateComponent, ReactiveFormsModule],
+  imports: [ButtonComponent, AsyncPipe, MatchUpdateComponent, ReactiveFormsModule],
   templateUrl: "./match-admin.component.html",
   styleUrl: "./match-admin.component.scss",
 })
@@ -52,11 +53,6 @@ export class MatchAdminComponent {
       });
       this.matchesForm.addControl(match.id, matchForm);
     });
-  }
-
-  onCancel(): void {
-    this.errorMessage.set("");
-    this.matchesForm.reset();
   }
 
   onSubmit(): void {
