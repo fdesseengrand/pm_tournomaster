@@ -1,0 +1,35 @@
+<h2>Existing teams</h2>
+
+<div class="teams-list">
+  @for (team of teams(); track team.id) {
+  <div class="list-element bold-text">{{ team.name }}</div>
+  } @empty {
+  <div class="list-element bold-text">There are no teams.</div>
+  } @if (errorMessage) {
+  <div class="error-message">{{ errorMessage }}</div>
+  }
+</div>
+
+<h2>New team</h2>
+
+<div class="team-creation-container">
+  <form (ngSubmit)="createTeam()" #teamForm="ngForm">
+    <div class="input-container">
+      <label class="input-label bold-text" for="name">Name of the team</label>
+      <input
+        type="text"
+        id="name"
+        name="teamName"
+        class="input-field light-text"
+        placeholder="Ex: Belligerent penguins"
+        [(ngModel)]="teamName"
+        required
+        minlength="3"
+      />
+    </div>
+    <div>
+      <app-button mode="secondary" (clicked)="onCancelClick()">Cancel</app-button>
+      <app-button mode="primary" type="submit" [isDisabled]="teamForm.invalid">Save</app-button>
+    </div>
+  </form>
+</div>

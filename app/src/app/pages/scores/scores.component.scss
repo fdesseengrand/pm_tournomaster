@@ -1,0 +1,63 @@
+.match-container {
+  background-color: var(--very-dark);
+
+  .time-filter {
+    padding: 1.25rem;
+    display: flex;
+    gap: 0.1rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+
+    @media screen and (min-width: 768px) {
+      gap: 0.5rem;
+      justify-content: flex-start;
+    }
+  }
+
+  .match-list {
+    display: flex;
+    flex-direction: column;
+
+    .match-status {
+      width: 5rem;
+    }
+
+    .score-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+
+      .separator {
+        flex-basis: 100px;
+        flex-shrink: 0;
+        text-align: center;
+      }
+
+      .team-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex-basis: calc(100% / 2);
+        justify-content: flex-end;
+
+        &.first-team {
+          text-align: right;
+        }
+
+        &.second-team {
+          justify-content: flex-start;
+        }
+
+        overflow: hidden;
+
+        img {
+          width: 1.5rem;
+
+          @media screen and (width > 768px) {
+            width: 2.5rem;
+          }
+        }
+      }
+    }
+  }
+}

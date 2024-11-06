@@ -13,9 +13,5 @@ import { AuthService } from "../../shared/auth/auth.service";
   styleUrl: "./header.component.scss",
 })
 export class HeaderComponent {
-  /**
-   * Constructor.
-   * @param authService The authentication service.
-   */
   constructor(public authService: AuthService) {}
 }

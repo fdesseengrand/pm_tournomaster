@@ -12,7 +12,7 @@
     background-color: var(--light);
     color: var(--white);
 
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: var(--very-light);
     }
   }
@@ -22,10 +22,16 @@
     background-color: var(--white);
     color: var(--light);
 
-    &:hover {
+    &:hover:not(:disabled) {
       background-color: var(--very-light);
       color: var(--white);
     }
+  }
+
+  &:disabled {
+    background-color: var(--white);
+    color: grey;
+    cursor: default;
   }
 
   // Accessibility

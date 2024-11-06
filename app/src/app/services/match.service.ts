@@ -10,7 +10,7 @@ import { CreateMatchDto, Match, UpdateMatchDto } from "../shared/models/match.mo
   providedIn: "root",
 })
 export class MatchesService {
-  private readonly BASE_URL = "/matches";
+  private readonly API_URL = "matches";
 
   /**
    * Constructor.
@@ -22,16 +22,15 @@ export class MatchesService {
    * Retrieves a list of all matches.
    */
   findAll(): Observable<Match[]> {
-    return this.http.get<Match[]>(this.BASE_URL);
+    return this.http.get<Match[]>(this.API_URL);
   }
 
   /**
    * Creates a new match.
    * @param matchData The data for the match to create.
-   * @returns An observable that emits the created Match object.
    */
   create(matchData: CreateMatchDto): Observable<Match> {
-    return this.http.post<Match>(this.BASE_URL, matchData);
+    return this.http.post<Match>(this.API_URL, matchData);
   }
 
   /**
@@ -40,6 +39,6 @@ export class MatchesService {
    * @param updateData The new data for the match.
    */
   update(id: string, updateData: UpdateMatchDto): Observable<Match> {
-    return this.http.patch<Match>(`${this.BASE_URL}/${id}`, updateData);
+    return this.http.patch<Match>(`${this.API_URL}/${id}`, updateData);
   }
 }

@@ -1,26 +1,31 @@
-import { NgClass } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgClass } from "@angular/common";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 /**
  * Generic button component.
  */
 @Component({
-  selector: 'app-button',
+  selector: "app-button",
   standalone: true,
   imports: [NgClass],
-  templateUrl: './button.component.html',
-  styleUrl: './button.component.scss'
+  templateUrl: "./button.component.html",
+  styleUrl: "./button.component.scss",
 })
 export class ButtonComponent {
   /**
    * The button mode.
    */
-  @Input() mode: 'primary' | 'secondary' = 'primary';
+  @Input() mode: "primary" | "secondary" = "primary";
 
   /**
- * The button type
- */
-  @Input() type?: string = 'button';
+   * The button type
+   */
+  @Input() type?: string = "button";
+
+  /**
+   * Indicates if the button is disabled.
+   */
+  @Input() isDisabled?: boolean | null = false;
 
   /**
    * Click output event.

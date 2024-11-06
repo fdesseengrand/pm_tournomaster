@@ -30,14 +30,14 @@ describe("MatchesService", () => {
       {
         id: "1",
         score: "1-1",
-        dateTime: new Date("2023-01-01T15:00:00.000Z"),
+        dateTime: "2023-01-01T15:00:00.000Z",
         firstTeam: { id: "1", name: "Team A" },
         secondTeam: { id: "2", name: "Team B" },
       },
       {
         id: "2",
         score: "2-2",
-        dateTime: new Date("2023-01-02T15:00:00.000Z"),
+        dateTime: "2023-01-02T15:00:00.000Z",
         firstTeam: { id: "3", name: "Team C" },
         secondTeam: { id: "4", name: "Team D" },
       },
@@ -57,7 +57,7 @@ describe("MatchesService", () => {
     const newMatch: CreateMatchDto = {
       firstTeam: { id: "1", score: 1 },
       secondTeam: { id: "2", score: 1 },
-      dateTime: new Date("2023-01-03T15:00:00.000Z"),
+      dateTime: "2023-01-03T15:00:00.000Z",
     };
     const createdMatch: Match = {
       id: "3",
@@ -81,7 +81,7 @@ describe("MatchesService", () => {
       id: "1",
       firstTeam: { id: "1", score: 2 },
       secondTeam: { id: "2", score: 2 },
-      dateTime: new Date("2023-01-01T15:00:00.000Z"),
+      dateTime: "2023-01-01T15:00:00.000Z",
     };
     const updatedMatch: Match = {
       id: "1",

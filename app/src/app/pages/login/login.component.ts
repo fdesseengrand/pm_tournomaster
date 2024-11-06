@@ -21,14 +21,9 @@ export class LoginComponent {
     name: FormControl<string | null>;
     password: FormControl<string | null>;
   }>;
+
   errorMessage: string = "";
 
-  /**
-   * Constructor.
-   * @param fb The form builder.
-   * @param authService The authentication service.
-   * @param router The router service.
-   */
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
     this.loginForm = this.fb.group({
       name: ["", Validators.required],
@@ -36,9 +31,6 @@ export class LoginComponent {
     });
   }
 
-  /**
-   * Handles the login form submission.
-   */
   onSubmit(): void {
     if (this.loginForm.valid) {
       const { name, password } = this.loginForm.value;
@@ -57,9 +49,6 @@ export class LoginComponent {
     }
   }
 
-  /**
-   * Handles login cancellation.
-   */
   onCancel(): void {
     this.router.navigate([APP_ROUTES.consultation]);
   }

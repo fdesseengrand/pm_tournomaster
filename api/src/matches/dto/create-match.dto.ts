@@ -22,6 +22,7 @@ export class CreateMatchDto {
 
     /**
      * Date and time when the match is scheduled or took place.
+     * @example '2024-11-10T15:00:00.000Z'
      */
     @IsNotEmpty()
     @IsDate()

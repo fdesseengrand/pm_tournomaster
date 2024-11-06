@@ -4,12 +4,16 @@
     <h1 class="title">Tournomaster</h1>
   </div>
 
-  @if(!(authService.isAuthenticated$ | async)) {
+  @let isAuthenticated = (authService.isAuthenticated$ | async);
   <div class="login">
+    @if(!isAuthenticated) {
     <a href="/login">
       <img src="/icons/locker.svg" alt="Password icon" class="login-icon" />
     </a>
     <span class="login-text">Log in</span>
+    } @else {
+    <img src="/icons/locker.svg" alt="Password icon" class="login-icon" />
+    <span class="login-text">Logged in</span>
+    }
   </div>
-  }
 </header>

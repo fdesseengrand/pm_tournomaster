@@ -19,7 +19,7 @@ export interface Match {
    * Date and time when the match is scheduled or took place.
    * @example '2024-11-10T15:00:00.000Z'
    */
-  dateTime: Date;
+  dateTime: string;
 
   /**
    * The first team.
@@ -48,13 +48,17 @@ export interface CreateMatchDto {
 
   /**
    * Date and time when the match is scheduled or took place.
+   * @example '2024-11-10T15:00:00.000Z'
    */
-  dateTime: Date;
+  dateTime: string;
 }
 
 /**
  * Match update validator.
  */
 export interface UpdateMatchDto extends CreateMatchDto {
+  /**
+   * The unique id.
+   */
   id: string;
 }

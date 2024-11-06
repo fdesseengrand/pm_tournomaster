@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { BehaviorSubject, Observable, of, throwError } from "rxjs";
-import { catchError, map, tap } from "rxjs/operators";
+import { catchError, first, map, tap } from "rxjs/operators";
 import { APP_ROUTES } from "../constants/routes.constants";
 import { Credentials, Tokens } from "./auth.interface";
 
@@ -34,7 +34,9 @@ export class AuthService {
    * @param http The Http client.
    * @param router The router service.
    */
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+    this.checkAuth().pipe(first()).subscribe();
+  }
 
   /**
    * Logs the user in.
@@ -110,6 +112,7 @@ export class AuthService {
   checkAuth(): Observable<boolean> {
     const token = this.accessToken;
     if (token && !this.isTokenExpired(token)) {
+      this.isAuthenticated$.next(true);
       return of(true);
     } else if (token && this.refreshToken) {
       return this.refreshAccessToken().pipe(

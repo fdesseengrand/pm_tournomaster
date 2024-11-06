@@ -1,0 +1,37 @@
+<section aria-labelledby="page-subtitle">
+  <div class="page-subtitle subtitle">Find out the results of your favorite matches in this crazy tournament!</div>
+</section>
+
+<section aria-labelledby="match-list" class="match-container">
+  <div class="time-filter">
+    @for (filter of timeFilterOptions; track filter.value) {
+    <app-button
+      [mode]="isSelected(filter.value) ? 'primary' : 'secondary'"
+      (clicked)="onTimeFilterClick(filter.value)"
+      [attr.aria-label]="filter.ariaLabel"
+    >
+      {{ filter.label }}
+    </app-button>
+    }
+  </div>
+
+  @let matches = (filteredMatches$ | async);
+  <div class="match-list">
+    @for (match of matches; track match.id) {
+    <div class="list-element">
+      <span class="match-status light-text">{{ match.dateTime | dateStatus }}</span>
+      <div class="score-container bold-text">
+        <div class="team-container first-team">
+          <span class="team-name">{{ match.firstTeam.name }}</span>
+        </div>
+        <span class="separator">{{ match.score ?? "-" }}</span>
+        <div class="team-container second-team">
+          <span class="team-name">{{ match.secondTeam.name }}</span>
+        </div>
+      </div>
+    </div>
+    } @empty {
+    <div class="list-element bold-text">No scores available.</div>
+    }
+  </div>
+</section>

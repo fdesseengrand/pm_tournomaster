@@ -1,0 +1,72 @@
+/** Style for redundant elements */
+
+// Input styles
+// TODO create a reusable input component.
+.input-container {
+  position: relative;
+
+  .icon {
+    position: absolute;
+    left: 0.7rem;
+    top: 2.3rem;
+    width: 16px;
+    height: 20px;
+
+    @media screen and (width > 768px) {
+      top: 2.8rem;
+    }
+  }
+
+  .input-field {
+    padding: 0.8rem;
+    border: none;
+    background-color: var(--dark);
+    color: var(--white);
+    padding-left: 2.5rem;
+
+    &:focus-visible {
+      outline: 3px solid var(--light);
+      outline-offset: 2px;
+    }
+
+    &[aria-invalid="true"] {
+      outline: 3px solid var(--red);
+    }
+  }
+
+  .input-label {
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 0.7rem;
+    display: block;
+    color: var(--white);
+    margin-top: 1rem;
+  }
+}
+
+.error-message {
+  color: var(--red);
+  margin-top: 0.25rem;
+}
+
+.page-subtitle {
+  color: var(--white);
+  padding: 0.2rem 1.2rem 2rem;
+  margin-bottom: 1rem;
+  max-width: 33rem;
+}
+
+.list-element {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 2rem;
+  padding: 0.3rem 0.7rem;
+
+  &:nth-child(even) {
+    background-color: var(--darker);
+  }
+
+  @media screen and (width > 768px) {
+    padding: 0.5rem 1.5rem;
+  }
+}

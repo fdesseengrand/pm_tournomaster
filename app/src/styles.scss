@@ -1,3 +1,4 @@
+@import "styles/elements";
 @import "styles/fonts";
 @import "styles/variables";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
@@ -6,32 +7,4 @@ body {
   background-color: var(--dark);
   color: var(--white);
   margin: 0;
-}
-
-.error-message {
-  color: var(--red);
-  margin-top: 0.25rem;
-}
-
-.explanation-banner {
-  color: var(--white);
-  padding: 0.2rem 1.2rem 2rem;
-  margin-bottom: 1rem;
-  max-width: 33rem;
-}
-
-.list-element {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 2rem;
-  padding: 0.3rem 0.7rem;
-
-  &:nth-child(even) {
-    background-color: var(--darker);
-  }
-
-  @media screen and (width > 768px) {
-    padding: 0.5rem 1.5rem;
-  }
 }
