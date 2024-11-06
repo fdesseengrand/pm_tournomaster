@@ -1,23 +1,22 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SetResultsComponent } from './set-results.component';
+import { SetResultsComponent } from "./set-scores.component";
 
-describe('SetResultsComponent', () => {
+describe("SetResultsComponent", () => {
   let component: SetResultsComponent;
   let fixture: ComponentFixture<SetResultsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SetResultsComponent]
-    })
-    .compileComponents();
+      imports: [SetResultsComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SetResultsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

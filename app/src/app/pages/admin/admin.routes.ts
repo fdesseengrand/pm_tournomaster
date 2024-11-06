@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
 import { authGuard } from "../../shared/auth/auth.guard";
-import { SetResultsComponent } from "./results/set-results.component";
+import { SetResultsComponent } from "./scores/set-scores.component";
 import { TeamsComponent } from "./teams/teams.component";
 
 /**
