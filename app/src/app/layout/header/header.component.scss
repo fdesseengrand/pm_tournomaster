@@ -28,6 +28,23 @@ header {
     }
   }
 
+  nav {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 40rem;
+    a {
+      gap: 0.6rem;
+      text-decoration: none;
+      color: var(--white);
+
+      &.active {
+        color: var(--very-light);
+        font-weight: var(--font-weight-semibold);
+      }
+    }
+  }
+
   .login {
     display: flex;
     flex-direction: column;

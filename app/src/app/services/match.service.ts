@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { CreateMatchDto, Match, UpdateMatchDto } from "../shared/models/match.model";
+import { Match } from "../shared/models/match.model";
 
 /**
  * The Matches service.
@@ -9,7 +9,7 @@ import { CreateMatchDto, Match, UpdateMatchDto } from "../shared/models/match.mo
 @Injectable({
   providedIn: "root",
 })
-export class MatchesService {
+export class MatchService {
   private readonly API_URL = "matches";
 
   /**
@@ -29,16 +29,15 @@ export class MatchesService {
    * Creates a new match.
    * @param matchData The data for the match to create.
    */
-  create(matchData: CreateMatchDto): Observable<Match> {
+  create(matchData: Match): Observable<Match> {
     return this.http.post<Match>(this.API_URL, matchData);
   }
 
   /**
    * Updates an existing match.
-   * @param id The ID of the match to update.
    * @param updateData The new data for the match.
    */
-  update(id: string, updateData: UpdateMatchDto): Observable<Match> {
-    return this.http.patch<Match>(`${this.API_URL}/${id}`, updateData);
+  update(updateData: Match): Observable<Match> {
+    return this.http.patch<Match>(`${this.API_URL}/${updateData.id}`, updateData);
   }
 }

@@ -3,17 +3,28 @@
     <img src="/icons/logo.png" alt="Logo" class="logo-icon" />
     <h1 class="title">Tournomaster</h1>
   </div>
-
   @let isAuthenticated = (authService.isAuthenticated$ | async);
+
+  <!-- Navbar -->
+  @if (isAuthenticated) {
+  <nav class="nav">
+    <a [routerLink]="APP_ROUTES.adminRoot + '/' + APP_ROUTES.admin.teams" routerLinkActive="active" class="subtitle">Manage teams</a>
+    <a [routerLink]="APP_ROUTES.adminRoot + '/' + APP_ROUTES.admin.scores" routerLinkActive="active" class="subtitle">Manage scores</a>
+    <a [routerLink]="APP_ROUTES.scores" routerLinkActive="active" class="subtitle">View results</a>
+  </nav>
+  }
+
   <div class="login">
     @if(!isAuthenticated) {
-    <a href="/login">
+    <a [href]="APP_ROUTES.login">
       <img src="/icons/locker.svg" alt="Password icon" class="login-icon" />
     </a>
     <span class="login-text">Log in</span>
     } @else {
-    <img src="/icons/locker.svg" alt="Password icon" class="login-icon" />
-    <span class="login-text">Logged in</span>
+    <a href="" (click)="onLogoutClick($event)">
+      <img src="/icons/locker.svg" alt="Password icon" class="login-icon" />
+    </a>
+    <span class="login-text">Log out</span>
     }
   </div>
 </header>

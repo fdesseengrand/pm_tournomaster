@@ -1,0 +1,17 @@
+@if (formGroup) {
+<div [formGroup]="formGroup">
+  <div class="score-header list-element">
+    <span class="bold-text">{{ match.firstTeam.name }} - {{ match.secondTeam.name }}</span>
+    <span class="light-text">{{ match.dateTime | dateStatus }}</span>
+  </div>
+  <div class="score-content list-element">
+    <div>
+      <input type="number" class="input-field light-text" placeholder="Ex.:0" formControlName="scoreTeam1" [formGroup]="formGroup" />
+    </div>
+    <hr class="separator" />
+    <div>
+      <input type="number" class="input-field light-text" placeholder="Ex.:2" formControlName="scoreTeam2" [formGroup]="formGroup" />
+    </div>
+  </div>
+</div>
+}

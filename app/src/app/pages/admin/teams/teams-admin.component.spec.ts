@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { SetResultsComponent } from "./set-scores.component";
+import { TeamsAdminComponent } from "./teams-admin.component";
 
-describe("SetResultsComponent", () => {
-  let component: SetResultsComponent;
-  let fixture: ComponentFixture<SetResultsComponent>;
+describe("CreateTeamComponent", () => {
+  let component: TeamsAdminComponent;
+  let fixture: ComponentFixture<TeamsAdminComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SetResultsComponent],
+      imports: [TeamsAdminComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SetResultsComponent);
+    fixture = TestBed.createComponent(TeamsAdminComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

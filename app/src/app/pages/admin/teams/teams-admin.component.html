@@ -5,8 +5,8 @@
   <div class="list-element bold-text">{{ team.name }}</div>
   } @empty {
   <div class="list-element bold-text">There are no teams.</div>
-  } @if (errorMessage) {
-  <div class="error-message">{{ errorMessage }}</div>
+  } @if (errorMessage()) {
+  <div class="error-message">{{ errorMessage() }}</div>
   }
 </div>
 

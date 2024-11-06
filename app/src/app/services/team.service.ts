@@ -21,7 +21,7 @@ export class TeamService {
   /**
    * Fetches all teams from the server.
    */
-  getAllTeams(): Observable<Team[]> {
+  findAll(): Observable<Team[]> {
     return this.http.get<Team[]>(this.API_URL);
   }
 
@@ -29,7 +29,7 @@ export class TeamService {
    * Creates a new team.
    * @param teamData The data for the team to create.
    */
-  createTeam(teamData: CreateTeamDto): Observable<Team> {
+  create(teamData: CreateTeamDto): Observable<Team> {
     return this.http.post<Team>(this.API_URL, teamData);
   }
 }

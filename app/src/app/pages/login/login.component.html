@@ -1,4 +1,7 @@
-<div class="login-container">
+<section aria-labelledby="page-subtitle">
+  <div class="page-subtitle subtitle">Log in to add scores or teams!</div>
+</section>
+<section class="login-container">
   <img ngSrc="/icons/authent-with-circle.svg" alt="Authentication logo" width="72" height="72" priority />
 
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -50,4 +53,4 @@
       <app-button type="submit" aria-label="Login">Login</app-button>
     </div>
   </form>
-</div>
+</section>

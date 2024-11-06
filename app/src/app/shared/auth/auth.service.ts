@@ -35,7 +35,7 @@ export class AuthService {
    * @param router The router service.
    */
   constructor(private http: HttpClient, private router: Router) {
-    this.checkAuth().pipe(first()).subscribe();
+    this.checkAuth(false).pipe(first()).subscribe();
   }
 
   /**
@@ -47,20 +47,21 @@ export class AuthService {
       tap((tokens) => {
         this.storeTokens(tokens);
         this.isAuthenticated$.next(true);
-        this.router.navigate([APP_ROUTES.consultation]);
+        this.router.navigate([APP_ROUTES.scores]);
       })
     );
   }
 
   /**
    * Logs the user out.
+   * @param navigateTo The route to navigate to after logout.
    */
-  logout() {
+  logout(navigateTo: string = APP_ROUTES.login): void {
     localStorage.removeItem(this.ACCESS_TOKEN_STORAGE_KEY);
     localStorage.removeItem(this.REFRESH_TOKEN_STORAGE_KEY);
-    tap(() => this.isAuthenticated$.next(false));
+    this.isAuthenticated$.next(false);
 
-    this.router.navigate([APP_ROUTES.login]);
+    this.router.navigate([navigateTo]);
   }
 
   /**
@@ -109,7 +110,7 @@ export class AuthService {
   /**
    * Checks if the token exists and is valid.
    */
-  checkAuth(): Observable<boolean> {
+  checkAuth(logoutIfNoAuth: boolean = true): Observable<boolean> {
     const token = this.accessToken;
     if (token && !this.isTokenExpired(token)) {
       this.isAuthenticated$.next(true);
@@ -119,12 +120,12 @@ export class AuthService {
         tap(() => this.isAuthenticated$.next(true)),
         map(() => true),
         catchError(() => {
-          this.logout();
+          logoutIfNoAuth && this.logout();
           return of(false);
         })
       );
     } else {
-      this.logout();
+      logoutIfNoAuth && this.logout();
       return of(false);
     }
   }

@@ -1,7 +1,8 @@
 import { Routes } from "@angular/router";
 import { authGuard } from "../../shared/auth/auth.guard";
-import { SetResultsComponent } from "./scores/set-scores.component";
-import { TeamsComponent } from "./teams/teams.component";
+import { APP_ROUTES } from "../../shared/constants/routes.constants";
+import { MatchAdminComponent } from "./scores/match-admin.component";
+import { TeamsAdminComponent } from "./teams/teams-admin.component";
 
 /**
  * Admin routes.
@@ -10,16 +11,16 @@ const adminRoutes: Routes = [
   {
     path: "",
     pathMatch: "full",
-    redirectTo: "teams",
+    redirectTo: APP_ROUTES.admin.teams,
   },
   {
-    path: "teams",
-    component: TeamsComponent,
+    path: APP_ROUTES.admin.teams,
+    component: TeamsAdminComponent,
     canActivate: [authGuard],
   },
   {
-    path: "results",
-    component: SetResultsComponent,
+    path: APP_ROUTES.scores,
+    component: MatchAdminComponent,
     canActivate: [authGuard],
   },
 ];

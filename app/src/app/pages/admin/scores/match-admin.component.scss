@@ -1,0 +1,8 @@
+.match-container {
+  background-color: var(--very-dark);
+
+  .match-list {
+    display: flex;
+    flex-direction: column;
+  }
+}

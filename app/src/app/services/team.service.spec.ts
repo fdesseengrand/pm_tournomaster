@@ -20,14 +20,14 @@ describe("TeamService", () => {
     httpMock.verify();
   });
 
-  describe("#getAllTeams", () => {
-    it("should fetch all teams (GET request)", () => {
+  describe("#findAll", () => {
+    it("should retrieve all teams", () => {
       const mockTeams: Team[] = [
         { id: "1", name: "Team A" },
         { id: "2", name: "Team B" },
       ];
 
-      service.getAllTeams().subscribe((teams) => {
+      service.findAll().subscribe((teams) => {
         expect(teams).toEqual(mockTeams);
       });
 
@@ -37,12 +37,12 @@ describe("TeamService", () => {
     });
   });
 
-  describe("#createTeam", () => {
-    it("should create a new team (POST request)", () => {
+  describe("#create", () => {
+    it("should create a new team", () => {
       const newTeam: CreateTeamDto = { name: "Team C" };
       const createdTeam: Team = { id: "3", name: "Team C" };
 
-      service.createTeam(newTeam).subscribe((team) => {
+      service.create(newTeam).subscribe((team) => {
         expect(team).toEqual(createdTeam);
       });
 

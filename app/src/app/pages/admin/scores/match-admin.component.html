@@ -1,0 +1,21 @@
+<section aria-labelledby="page-subtitle">
+  <div class="page-subtitle subtitle">Here you can enter the scores for each match.</div>
+</section>
+
+<!-- Check that matchesForm has the same number of formgroups than the number of matches -->
+<form [formGroup]="matchesForm" (ngSubmit)="onSubmit()">
+  <div>
+    <button class="btn bold-text secondary" (click)="onCancel()">cancel</button>
+    <button class="btn bold-text primary" type="submit">save</button>
+  </div>
+
+  <div class="match-list">
+    @for (match of matches(); track match.id) {
+    <app-match-update [match]="match" [formGroup]="getMatchFormGroup(match)" />
+    } @empty {
+    <div class="list-element bold-text">There are no matches.</div>
+    } @if (errorMessage()) {
+    <div class="error-message">{{ errorMessage() }}</div>
+    }
+  </div>
+</form>

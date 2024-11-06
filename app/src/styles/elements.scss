@@ -41,6 +41,18 @@
     color: var(--white);
     margin-top: 1rem;
   }
+
+  input::placeholder {
+    color: var(--white);
+    opacity: 1;
+    font-style: italic;
+    font-size: var(--font-text-mobile);
+    font-weight: var(--font-weight-medium);
+
+    @media screen and (width > 768px) {
+      font-size: var(--font-text-desktop);
+    }
+  }
 }
 
 .error-message {

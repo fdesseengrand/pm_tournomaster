@@ -50,6 +50,6 @@ export class LoginComponent {
   }
 
   onCancel(): void {
-    this.router.navigate([APP_ROUTES.consultation]);
+    this.router.navigate([APP_ROUTES.scores]);
   }
 }

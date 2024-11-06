@@ -22,18 +22,3 @@ export interface CreateTeamDto {
    */
   name: string;
 }
-
-/**
- * Team's score validator.
- */
-export interface TeamScoreDto {
-  /**
-   * The id of the team.
-   */
-  id: string;
-
-  /**
-   * The score achieved by the team.
-   */
-  score: number;
-}

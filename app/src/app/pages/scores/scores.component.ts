@@ -1,10 +1,10 @@
 import { AsyncPipe } from "@angular/common";
 import { Component, OnInit, signal } from "@angular/core";
 import { map, Observable } from "rxjs";
-import { DateStatusPipe } from "../../pipes/date-status.pipe";
-import { MatchesService } from "../../services/match.service";
+import { MatchService } from "../../services/match.service";
 import { ButtonComponent } from "../../shared/components/button/button.component";
 import { Match } from "../../shared/models/match.model";
+import { DateStatusPipe } from "../../shared/pipes/date-status.pipe";
 
 type TimeFilterValue = "all" | "completed" | "upcoming";
 
@@ -24,7 +24,7 @@ interface TimeFilterOption {
   templateUrl: "./scores.component.html",
   styleUrl: "./scores.component.scss",
 })
-export class ConsultationComponent implements OnInit {
+export class ScoresComponent implements OnInit {
   matches$!: Observable<Match[]>;
 
   filteredMatches$!: Observable<Match[]>;
@@ -37,7 +37,7 @@ export class ConsultationComponent implements OnInit {
     { label: "UPCOMING", value: "upcoming", ariaLabel: "Upcoming" },
   ];
 
-  constructor(private matchesService: MatchesService) {}
+  constructor(private matchesService: MatchService) {}
 
   ngOnInit(): void {
     this.loadMatches();

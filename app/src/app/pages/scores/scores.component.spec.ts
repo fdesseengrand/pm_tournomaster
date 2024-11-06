@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { HttpClientTestingModule, provideHttpClientTesting } from "@angular/common/http/testing";
-import { ConsultationComponent } from "./scores.component";
+import { ScoresComponent } from "./scores.component";
 
-describe("ConsultationComponent", () => {
-  let component: ConsultationComponent;
-  let fixture: ComponentFixture<ConsultationComponent>;
+describe("ScoresComponent", () => {
+  let component: ScoresComponent;
+  let fixture: ComponentFixture<ScoresComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConsultationComponent, HttpClientTestingModule],
+      imports: [ScoresComponent, HttpClientTestingModule],
       providers: [provideHttpClientTesting()],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ConsultationComponent);
+    fixture = TestBed.createComponent(ScoresComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

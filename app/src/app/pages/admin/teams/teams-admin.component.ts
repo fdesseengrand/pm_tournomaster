@@ -12,15 +12,15 @@ import { Team } from "../../../shared/models/team.model";
   selector: "app-team",
   standalone: true,
   imports: [AsyncPipe, ButtonComponent, NgClass, FormsModule],
-  templateUrl: "./teams.component.html",
-  styleUrl: "./teams.component.scss",
+  templateUrl: "./teams-admin.component.html",
+  styleUrl: "./teams-admin.component.scss",
 })
-export class TeamsComponent {
+export class TeamsAdminComponent {
   teams = signal<Team[]>([]);
 
-  teamName: string = "";
+  errorMessage = signal("");
 
-  errorMessage: string = "";
+  teamName = "";
 
   constructor(private teamService: TeamService) {}
 
@@ -29,33 +29,28 @@ export class TeamsComponent {
   }
 
   private fetchTeams(): void {
-    this.teamService.getAllTeams().subscribe({
-      next: (teams) => {
-        this.teams.set(teams);
-      },
-      error: () => {
-        this.errorMessage = "Failed to load teams";
-      },
+    this.teamService.findAll().subscribe({
+      next: (teams) => this.teams.set(teams),
+      error: () => this.errorMessage.set("Failed to load teams"),
     });
   }
 
-  createTeam() {
+  createTeam(): void {
     if (!this.teamName) {
-      return;
+      this.errorMessage.set("Please enter a team name");
     }
 
-    this.teamService.createTeam({ name: this.teamName }).subscribe({
+    this.teamService.create({ name: this.teamName }).subscribe({
       next: () => {
+        this.errorMessage.set("");
         this.fetchTeams();
         this.teamName = "";
       },
-      error: (err) => {
-        this.errorMessage = "Failed to create team";
-      },
+      error: () => this.errorMessage.set("Failed to create team"),
     });
   }
 
-  onCancelClick() {
+  onCancelClick(): void {
     this.teamName = "";
   }
 }
