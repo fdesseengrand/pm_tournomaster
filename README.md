@@ -1,6 +1,6 @@
 # pm_tournomaster
 
-This application allows managing and consulting sports competition matches.
+This is a responsive application for consulting and managing sports competitions.
 
 A [developpement logbook](./LOGBOOK.md) briefly presents the architecture, the stages of reflection and areas for improvement.
 
