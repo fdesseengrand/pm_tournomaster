@@ -1,8 +1,36 @@
 # pm_tournomaster
 
+This project consists of a front-end built with **Angular** and a back-end built with **NestJS**, with an integrated **SQLite database** for data persistence.
+
 ## Overview
 
-// TODO : architecture, Swagger, dependencies.
+### Front-End
+
+The front-end application has four main pages:
+
+-   **Scores Consultation**: View the results of matches.
+-   **Teams Management**: Manage teams.
+-   **Scores Management**: Manage scores.
+-   **Login**: User authentication.
+
+### Back-End
+
+The back-end application provides three main services with REST APIs:
+
+-   **Auth Service**: Handles user authentication with JWT.
+-   **Matches Service**: Manages match data, including creation, updates, and retrieval. It also includes a WebSocket for triggering client refreshes when matches are updated or created.
+-   **Teams Service**: Manages team data, including creation and retrieval.
+
+### Documentation
+
+You can access the CHANGELOG files for detailed changes and updates:
+
+-   [API CHANGELOG.md](./api/CHANGELOG.md)
+-   [App CHANGELOG.md](./app/CHANGELOG.md)
+
+#### API Documentation
+
+After starting the application, the Swagger API documentation is available at [http://localhost:3000/docs](http://localhost:3000/docs) and the OpenAPI schema is available at [http://localhost:3000/open-api](http://localhost:3000/open-api).
 
 ## Quickstart
 
@@ -14,17 +42,6 @@ Clone the repository:
 git clone https://github.com/fdesseengrand/pm_tournomaster.git
 cd pm_tournomaster
 ```
-
-### Set up environment variables
-
-The `api` project needs environment variables.
-Create a `.env` file in the `api` repository and add the following line :
-
-```bash
-JWT_SECRET=your_secret_key_here
-```
-
-Replace `your_secret_key_here` with a strong, unique secret key.
 
 ### Running the project with Docker Compose
 

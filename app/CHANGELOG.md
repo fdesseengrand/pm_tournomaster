@@ -11,5 +11,7 @@ Initial release.
 
 ### Added
 
-- Pages and routing.
-- Simple authentication IHM, guard.
+- Login.
+- Scores consultation page.
+- Scores admin page.
+- Teams page.

@@ -11,9 +11,9 @@ Initial release.
 
 ### Added
 
-- `auth` resource.
-- `match` resource.
-- `team` resource.
-- JWT guard.
-- Data persistence with SQLite.
-- Swagger.
+-   `auth` service.
+-   `match` servicee.
+-   `team` service.
+-   JWT authentication.
+-   Data persistence with SQLite.
+-   Swagger.
