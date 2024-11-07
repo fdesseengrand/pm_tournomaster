@@ -9,10 +9,6 @@ You can access the CHANGELOG files for detailed changes and updates:
 -   [API CHANGELOG.md](./api/CHANGELOG.md)
 -   [APP CHANGELOG.md](./app/CHANGELOG.md)
 
-## API Documentation
-
-After starting the application, the Swagger API documentation is available at [http://localhost:3000/docs](http://localhost:3000/docs) and the OpenAPI schema is available at [http://localhost:3000/open-api](http://localhost:3000/open-api).
-
 ## Quickstart
 
 ### Clone the repository
@@ -46,6 +42,11 @@ To build and start the services, run:
 ```bash
 docker-compose up --build
 ```
+
+Once the application is running, you can access :
+- The client at `localhost:4200`.
+- The API at `localhost:3000`.
+- The Swagger API documentation is available at [http://localhost:3000/docs](http://localhost:3000/docs) and the OpenAPI schema is available at [http://localhost:3000/open-api](http://localhost:3000/open-api).
 
 ### Running the project locally
 
