@@ -1,34 +1,15 @@
 # pm_tournomaster
 
-This project consists of a front-end built with **Angular** and a back-end built with **NestJS**, with an integrated **SQLite database** for data persistence.
+This application allows managing and consulting sports competition matches.
 
-## Overview
-
-### Front-End
-
-The front-end application has four main pages:
-
--   **Scores Consultation**: View the results of matches.
--   **Teams Management**: Manage teams.
--   **Scores Management**: Manage scores.
--   **Login**: User authentication.
-
-### Back-End
-
-The back-end application provides three main services with REST APIs:
-
--   **Auth Service**: Handles user authentication with JWT.
--   **Matches Service**: Manages match data, including creation, updates, and retrieval. It also includes a WebSocket for triggering client refreshes when matches are updated or created.
--   **Teams Service**: Manages team data, including creation and retrieval.
-
-### Documentation
+A [developpement logbook](./LOGBOOK.md) briefly presents the architecture, the stages of reflection and areas for improvement.
 
 You can access the CHANGELOG files for detailed changes and updates:
 
 -   [API CHANGELOG.md](./api/CHANGELOG.md)
--   [App CHANGELOG.md](./app/CHANGELOG.md)
+-   [APP CHANGELOG.md](./app/CHANGELOG.md)
 
-#### API Documentation
+## API Documentation
 
 After starting the application, the Swagger API documentation is available at [http://localhost:3000/docs](http://localhost:3000/docs) and the OpenAPI schema is available at [http://localhost:3000/open-api](http://localhost:3000/open-api).
 

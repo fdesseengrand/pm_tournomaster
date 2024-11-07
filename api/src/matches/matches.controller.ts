@@ -1,5 +1,14 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import {
+    Body,
+    Controller,
+    Get,
+    Param,
+    Patch,
+    Post,
+    UseGuards,
+} from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
+import { JwtAuthGuard } from 'src/auth/jwt.auth.guard';
 import { CreateMatchDto } from './dto/create-match.dto';
 import { UpdateMatchDto } from './dto/update-match.dto';
 import { MatchesGateway } from './matches.gateway';
@@ -32,7 +41,7 @@ export class MatchesController {
      * @returns The created match.
      */
     @Post()
-    // @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard)
     @ApiBearerAuth()
     create(@Body() createMatchDto: CreateMatchDto) {
         const match = this.matchesService.create(createMatchDto);
