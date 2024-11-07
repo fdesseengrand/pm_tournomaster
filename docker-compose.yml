@@ -1,26 +1,28 @@
-services:
-  api:
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=production
-    volumes:
-      - ./api:/usr/src/app
-    networks:
-      - app-network
+version: "3"
 
-  app:
-    build:
-      context: ./app
-      dockerfile: Dockerfile
-    ports:
-      - "4200:80"
-    networks:
-      - app-network
+services:
+    api:
+        build:
+            context: ./api
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+        environment:
+            - NODE_ENV=production
+        volumes:
+            - ./api:/usr/src/app
+        networks:
+            - app-network
+
+    app:
+        build:
+            context: ./app
+            dockerfile: Dockerfile
+        ports:
+            - "4200:80"
+        networks:
+            - app-network
 
 networks:
-  app-network:
-    driver: bridge
+    app-network:
+        driver: bridge

@@ -41,7 +41,7 @@ export class ScoresComponent implements OnInit, OnDestroy {
     { label: "UPCOMING", value: "upcoming", ariaLabel: "Upcoming" },
   ];
 
-  constructor(private matchesService: MatchService, private webSocketService: MatchWebSocketService) {}
+  constructor(private matchesService: MatchService, private webSocketService: MatchWebSocketService) { }
 
   ngOnInit(): void {
     this.loadMatches();
@@ -51,7 +51,9 @@ export class ScoresComponent implements OnInit, OnDestroy {
     });
 
     // Apply filter based on selected filter and matches data
-    this.filteredMatches$ = this.matches$.pipe(map((matches) => matches.filter(this.filterByTime.bind(this))));
+    this.filteredMatches$ = this.matches$.pipe(map((matches) => {
+      return matches.filter(this.filterByTime.bind(this))
+    }));
   }
 
   ngOnDestroy(): void {

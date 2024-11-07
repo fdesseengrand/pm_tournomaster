@@ -21,7 +21,7 @@ export class MatchesService {
         private readonly matchRepository: Repository<Match>,
         @InjectRepository(Team)
         private readonly teamRepository: Repository<Team>,
-    ) {}
+    ) { }
 
     /**
      * Creates a new match with the given data.

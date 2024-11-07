@@ -5,6 +5,7 @@ import { forkJoin, Observable, of } from "rxjs";
 import { MatchService } from "../../../services/match.service";
 import { ButtonComponent } from "../../../shared/components/button/button.component";
 import { Match } from "../../../shared/models/match.model";
+import { bothOrNeitherDefinedValidator } from "../../../shared/utils/match.utils";
 import { MatchUpdateComponent } from "./match-update/match-update.component";
 
 /**
@@ -50,15 +51,16 @@ export class MatchAdminComponent {
     // Create a sub-FormGroup for each match and add it to the matchesForm.
     matches.forEach((match) => {
       const matchForm = this.fb.group({
-        scoreTeam1: [match.score?.split("-")[0] || "", [Validators.required, Validators.pattern(/^\d+$/)]],
-        scoreTeam2: [match.score?.split("-")[1] || "", [Validators.required, Validators.pattern(/^\d+$/)]],
-      });
+        scoreTeam1: [match.score?.split("-")[0] || "", [Validators.pattern(/^\d+$/)]],
+        scoreTeam2: [match.score?.split("-")[1] || "", [Validators.pattern(/^\d+$/)]],
+      }, { validators: bothOrNeitherDefinedValidator('scoreTeam1', 'scoreTeam2') });
       this.matchesForm.addControl(match.id, matchForm);
     });
   }
 
   onSubmit(): void {
     this.errorMessage.set("");
+    this.validationMessage.set("");
     if (this.matchesForm.valid) {
       const updateObservables = this.matches()
         .filter((match) => this.matchesForm.get(match.id)?.valid && this.matchesForm.get(match.id)?.dirty)
@@ -83,7 +85,10 @@ export class MatchAdminComponent {
   updateMatch(match: Match): Observable<Match> {
     const form = this.matchesForm.get(match.id);
     if (form?.valid) {
-      const updatedScore = `${form.value.scoreTeam1}-${form.value.scoreTeam2}`;
+      let updatedScore = "";
+      if (form.value.scoreTeam1 && form.value.scoreTeam2) {
+        updatedScore = `${form.value.scoreTeam1}-${form.value.scoreTeam2}`;
+      }
       const updatedMatch = { ...match, score: updatedScore };
 
       // Return the observable so it can be part of the forkJoin

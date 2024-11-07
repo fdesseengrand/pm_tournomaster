@@ -7,6 +7,8 @@
     <app-button mode="primary" type="submit" [isDisabled]="matchesForm.invalid || matchesForm.pristine">Save changes</app-button>
     @if(validationMessage()) {
     <p class="validation-message light-text">{{ validationMessage() }}</p>
+    } @if (errorMessage()) {
+    <p class="error-message">{{ errorMessage() }}</p>
     }
   </div>
 
@@ -15,8 +17,6 @@
     <app-match-update [match]="match" [formGroup]="getMatchFormGroup(match)" />
     } @empty {
     <div class="list-element bold-text">There are no matches.</div>
-    } @if (errorMessage()) {
-    <div class="error-message">{{ errorMessage() }}</div>
     }
   </div>
 </form>

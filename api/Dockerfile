@@ -9,6 +9,7 @@ RUN npm install
 COPY . .
 
 RUN npm run build
+RUN ls -la /usr/src/app/dist
 
 # Deployment step
 FROM node:21
