@@ -1,6 +1,7 @@
 import { AsyncPipe } from "@angular/common";
-import { Component, OnInit, signal } from "@angular/core";
-import { map, Observable } from "rxjs";
+import { Component, OnDestroy, OnInit, signal } from "@angular/core";
+import { BehaviorSubject, map, Observable } from "rxjs";
+import { MAtchWebSocketService as MatchWebSocketService } from "../../services/match-websocket.service";
 import { MatchService } from "../../services/match.service";
 import { ButtonComponent } from "../../shared/components/button/button.component";
 import { Match } from "../../shared/models/match.model";
@@ -24,12 +25,15 @@ interface TimeFilterOption {
   templateUrl: "./scores.component.html",
   styleUrl: "./scores.component.scss",
 })
-export class ScoresComponent implements OnInit {
-  matches$!: Observable<Match[]>;
+export class ScoresComponent implements OnInit, OnDestroy {
+  private matchesSubject = new BehaviorSubject<Match[]>([]);
+  matches$: Observable<Match[]> = this.matchesSubject.asObservable();
 
   filteredMatches$!: Observable<Match[]>;
 
   selectedFilter = signal<TimeFilterValue>("all");
+
+  errorMessage = signal("");
 
   timeFilterOptions: TimeFilterOption[] = [
     { label: "ALL", value: "all", ariaLabel: "All" },
@@ -37,23 +41,30 @@ export class ScoresComponent implements OnInit {
     { label: "UPCOMING", value: "upcoming", ariaLabel: "Upcoming" },
   ];
 
-  constructor(private matchesService: MatchService) {}
+  constructor(private matchesService: MatchService, private webSocketService: MatchWebSocketService) {}
 
   ngOnInit(): void {
     this.loadMatches();
+
+    this.webSocketService.onMatchUpdate(() => {
+      this.loadMatches();
+    });
+
+    // Apply filter based on selected filter and matches data
+    this.filteredMatches$ = this.matches$.pipe(map((matches) => matches.filter(this.filterByTime.bind(this))));
   }
 
-  loadMatches(): void {
-    this.matches$ = this.matchesService.findAll();
-    this.applyFilter();
+  ngOnDestroy(): void {
+    this.webSocketService.disconnect();
   }
 
-  applyFilter(): void {
-    this.filteredMatches$ = this.matches$.pipe(
-      map((matches) => {
-        return matches.filter(this.filterByTime.bind(this));
-      })
-    );
+  private loadMatches(): void {
+    this.matchesService.findAll().subscribe({
+      next: (matches) => {
+        this.matchesSubject.next(matches);
+      },
+      error: () => this.errorMessage.set("An error occured while loading matches"),
+    });
   }
 
   /**
@@ -83,7 +94,7 @@ export class ScoresComponent implements OnInit {
 
   onTimeFilterClick(filter: TimeFilterValue) {
     this.selectedFilter.set(filter);
-    this.applyFilter();
+    this.filteredMatches$ = this.matches$.pipe(map((matches) => matches.filter(this.filterByTime.bind(this))));
   }
 
   isSelected = (filter: TimeFilterValue) => this.selectedFilter() === filter;

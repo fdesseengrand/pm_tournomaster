@@ -19,8 +19,10 @@ export class HeaderComponent {
 
   constructor(public authService: AuthService) {}
 
-  onLogoutClick(event: MouseEvent): void {
-    event.preventDefault();
-    this.authService.logout();
+  onLogClick(event: MouseEvent, isAuthenticated: boolean | null): void {
+    if (isAuthenticated) {
+      event.preventDefault();
+      this.authService.logout();
+    }
   }
 }

@@ -24,6 +24,8 @@ export class MatchAdminComponent {
 
   errorMessage = signal("");
 
+  validationMessage = signal("");
+
   constructor(public matchService: MatchService, public fb: FormBuilder) {
     this.matchesForm = this.fb.group({});
   }
@@ -66,6 +68,7 @@ export class MatchAdminComponent {
       if (updateObservables.length > 0) {
         forkJoin(updateObservables).subscribe({
           next: () => {
+            this.validationMessage.set("The new scores have been saved!");
             // Refetch the data once all updates are done.
             this.fetchMatches();
           },

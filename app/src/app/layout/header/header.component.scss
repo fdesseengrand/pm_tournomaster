@@ -6,24 +6,44 @@ header {
   align-items: center;
   height: 2.75rem;
 
-  .site-title {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
+  .site-link {
+    color: var(--white);
+    text-decoration: none;
 
-    img {
-      width: 38px;
-      height: 38px;
+    &:visited {
+      color: var(--white);
     }
 
-    @media (min-width: 768px) {
+    text-decoration: none;
+    &:visited {
+      text-decoration-color: none;
+    }
+
+    .site-title {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+
       img {
-        width: 60px;
-        height: 60px;
+        width: 38px;
+        height: 38px;
+        margin-right: 1rem;
       }
 
       h1 {
-        font-size: var(--font-title-desktop);
+        display: none;
+      }
+
+      @media (min-width: 768px) {
+        img {
+          width: 60px;
+          height: 60px;
+        }
+
+        h1 {
+          display: inline;
+          font-size: var(--font-title-desktop);
+        }
       }
     }
   }
@@ -49,13 +69,11 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 3rem;
+
     img.login-icon {
       width: 29px;
       height: 29px;
-    }
-
-    .login-text {
-      display: none;
     }
 
     @media (min-width: 768px) {
@@ -63,10 +81,10 @@ header {
         width: 34px;
         height: 34px;
       }
+    }
 
-      .login-text {
-        display: inline;
-      }
+    .login-text {
+      text-align: center;
     }
   }
 

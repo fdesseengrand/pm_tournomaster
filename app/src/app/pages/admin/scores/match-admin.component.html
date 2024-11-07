@@ -3,8 +3,11 @@
 </section>
 
 <form [formGroup]="matchesForm" (ngSubmit)="onSubmit()">
-  <div>
+  <div class="submit-container">
     <app-button mode="primary" type="submit" [isDisabled]="matchesForm.invalid || matchesForm.pristine">Save changes</app-button>
+    @if(validationMessage()) {
+    <p class="validation-message light-text">{{ validationMessage() }}</p>
+    }
   </div>
 
   <div class="match-list">

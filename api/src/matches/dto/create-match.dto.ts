@@ -31,7 +31,8 @@ export class CreateMatchDto {
 
     /**
      * The score achieved by the team.
+     * @example '1-0'
      */
     @Matches(/^\d+-\d+$/)
-    score: string;
+    score?: string;
 }

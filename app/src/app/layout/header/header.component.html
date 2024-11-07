@@ -1,30 +1,29 @@
 <header>
-  <div class="site-title title">
-    <img src="/icons/logo.png" alt="Logo" class="logo-icon" />
-    <h1 class="title">Tournomaster</h1>
-  </div>
+  <a href="/" class="site-link" aria-label="Home">
+    <div class="site-title">
+      <img src="/icons/logo.png" alt="Logo" class="logo-icon" />
+      <h1 class="title">Tournomaster</h1>
+    </div>
+  </a>
   @let isAuthenticated = (authService.isAuthenticated$ | async);
 
   <!-- Navbar -->
   @if (isAuthenticated) {
-  <nav class="nav">
+  <nav class="nav" aria-label="Main navigation">
+    <a [routerLink]="APP_ROUTES.scores" routerLinkActive="active" class="subtitle">View results</a>
     <a [routerLink]="APP_ROUTES.adminRoot + '/' + APP_ROUTES.admin.teams" routerLinkActive="active" class="subtitle">Manage teams</a>
     <a [routerLink]="APP_ROUTES.adminRoot + '/' + APP_ROUTES.admin.scores" routerLinkActive="active" class="subtitle">Manage scores</a>
-    <a [routerLink]="APP_ROUTES.scores" routerLinkActive="active" class="subtitle">View results</a>
   </nav>
   }
 
   <div class="login">
-    @if(!isAuthenticated) {
-    <a [href]="APP_ROUTES.login">
+    <a
+      [href]="isAuthenticated ? '' : APP_ROUTES.login"
+      (click)="onLogClick($event, isAuthenticated)"
+      [attr.aria-label]="isAuthenticated ? 'Log out' : 'Log in'"
+    >
       <img src="/icons/locker.svg" alt="Password icon" class="login-icon" />
     </a>
-    <span class="login-text">Log in</span>
-    } @else {
-    <a href="" (click)="onLogoutClick($event)">
-      <img src="/icons/locker.svg" alt="Password icon" class="login-icon" />
-    </a>
-    <span class="login-text">Log out</span>
-    }
+    <span class="login-text light-text">{{ isAuthenticated ? "Log out" : "Log in" }}</span>
   </div>
 </header>

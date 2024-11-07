@@ -5,11 +5,7 @@
 <section aria-labelledby="match-list" class="match-container">
   <div class="time-filter">
     @for (filter of timeFilterOptions; track filter.value) {
-    <app-button
-      [mode]="isSelected(filter.value) ? 'primary' : 'secondary'"
-      (clicked)="onTimeFilterClick(filter.value)"
-      [attr.aria-label]="filter.ariaLabel"
-    >
+    <app-button [mode]="isSelected(filter.value) ? 'primary' : 'secondary'" (clicked)="onTimeFilterClick(filter.value)" [attr.aria-label]="filter.ariaLabel">
       {{ filter.label }}
     </app-button>
     }
@@ -17,7 +13,7 @@
 
   @let matches = (filteredMatches$ | async);
   <div class="match-list">
-    @for (match of matches; track match.id) {
+    @for (match of matches; track match) {
     <div class="list-element">
       <span class="match-status light-text">{{ match.dateTime | dateStatus }}</span>
       <div class="score-container bold-text">
@@ -34,4 +30,7 @@
     <div class="list-element bold-text">No scores available.</div>
     }
   </div>
+  @if (errorMessage()) {
+  <div class="error-message">{{ errorMessage() }}</div>
+  }
 </section>

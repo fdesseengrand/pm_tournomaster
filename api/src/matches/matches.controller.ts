@@ -1,16 +1,8 @@
-import {
-    Body,
-    Controller,
-    Get,
-    Param,
-    Patch,
-    Post,
-    UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiBearerAuth } from '@nestjs/swagger';
-import { JwtAuthGuard } from '../auth/jwt.auth.guard';
 import { CreateMatchDto } from './dto/create-match.dto';
 import { UpdateMatchDto } from './dto/update-match.dto';
+import { MatchesGateway } from './matches.gateway';
 import { MatchesService } from './matches.service';
 
 @Controller('matches')
@@ -18,8 +10,12 @@ export class MatchesController {
     /**
      * Constructor.
      * @param matchesService The matches service.
+     * @param matchesGateway
      */
-    constructor(private readonly matchesService: MatchesService) {}
+    constructor(
+        private readonly matchesService: MatchesService,
+        private readonly matchesGateway: MatchesGateway,
+    ) {}
 
     /**
      * Finds all the matches.
@@ -36,10 +32,12 @@ export class MatchesController {
      * @returns The created match.
      */
     @Post()
-    @UseGuards(JwtAuthGuard)
+    // @UseGuards(JwtAuthGuard)
     @ApiBearerAuth()
     create(@Body() createMatchDto: CreateMatchDto) {
-        return this.matchesService.create(createMatchDto);
+        const match = this.matchesService.create(createMatchDto);
+        this.matchesGateway.emitMatchUpdate();
+        return match;
     }
 
     /**
@@ -47,9 +45,11 @@ export class MatchesController {
      * @param updateMatchDto The match update validator.
      */
     @Patch(':id')
-    @UseGuards(JwtAuthGuard)
+    // @UseGuards(JwtAuthGuard)
     @ApiBearerAuth()
     update(@Param('id') id: string, @Body() updateMatchDto: UpdateMatchDto) {
-        return this.matchesService.update(id, updateMatchDto);
+        const match = this.matchesService.update(id, updateMatchDto);
+        this.matchesGateway.emitMatchUpdate();
+        return match;
     }
 }

@@ -6,11 +6,13 @@
   </div>
   <div class="score-content list-element">
     <div>
-      <input type="number" class="input-field light-text" placeholder="Ex.:0" formControlName="scoreTeam1" [formGroup]="formGroup" />
+      <p class="bold-text">{{ match.firstTeam.name }}</p>
+      <input class="input-field light-text" placeholder="Ex.:0" formControlName="scoreTeam1" [formGroup]="formGroup" />
     </div>
     <hr class="separator" />
     <div>
-      <input type="number" class="input-field light-text" placeholder="Ex.:2" formControlName="scoreTeam2" [formGroup]="formGroup" />
+      <p class="bold-text">{{ match.secondTeam.name }}</p>
+      <input class="input-field light-text" placeholder="Ex.:2" formControlName="scoreTeam2" [formGroup]="formGroup" />
     </div>
   </div>
 </div>
